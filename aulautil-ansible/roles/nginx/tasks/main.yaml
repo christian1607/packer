@@ -1,0 +1,16 @@
+---
+- name: install nginx on Ubuntu
+  #apt: name=nginx state=present
+  yum: name=nginx state=present
+
+- name: copy index.html
+  copy:
+    src: "{{ env }}/index.html"
+    #dest: /var/www/html/index.nginx-debian.html
+    dest: /usr/share/nginx/
+    owner: root
+    group: root
+    mode: 0755
+
+- name: start and enable nginx
+  service: name=nginx state=started enabled=yes

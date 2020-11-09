@@ -1,0 +1,42 @@
+{
+    "variables": {
+      "subscription_id": "72a70c6f-90c3-4aca-a78d-6e538352c901",
+      "client_id": "dab29565-2c10-4b95-b06c-e6690fef6e1a",
+      "client_secret": "2sLddd-4~jeRQGLqsJNJKpYv1vNUX-0AO4"
+    },
+
+    "builders": [
+      {
+        "type": "azure-arm",
+        "subscription_id": "{{user `subscription_id`}}",
+        "client_id": "{{user `client_id`}}",
+        "client_secret": "{{user `client_secret`}}",
+        "image_publisher": "Canonical",
+        "image_offer": "UbuntuServer",
+        "image_sku": "18.04-LTS",
+        "location": "eastus",
+        "temp_resource_group_name":"rg-tmp-packer-personal-001",
+        "managed_image_name": "image-centos-7-8-minimal",
+        "managed_image_resource_group_name": "rg-azurecli-personal-001",
+        "os_type": "linux",
+        "vm_size": "Standard_D2ds_v4",
+        "azure_tags": {
+            "Owner": "Christian Altamirano",
+            "CostCenter": "Trial",
+            "Project": "PackerAzure"    
+        }
+        
+
+      }
+    ],
+
+    "provisioners": [
+        {
+          "type": "shell",
+          "inline": ["echo packer rocks!!!!"]
+        }
+       
+      ]
+ 
+  }
+  

@@ -1,0 +1,21 @@
+{
+  "variables": {
+    "env": ""
+  },
+  "builders": [
+  {
+    "type": "amazon-ebs",
+    "region": "us-west-2",
+    "source_ami": "ami-0f2176987ee50226e",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "packer-nginx-v1"
+  }],
+  "provisioners": [
+  {
+    "type": "ansible",
+    "playbook_file": "./playbook.yml",
+    "extra_arguments": ["--extra-vars", "env={{user `env`}}"]
+  }]
+}
+
