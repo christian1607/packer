@@ -1,1 +1,7 @@
 isos/*
+
+**/*.vmdk
+
+**/*.ovf
+
+*/packer_cache/*
