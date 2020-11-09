@@ -5,3 +5,5 @@ isos/*
 **/*.ovf
 
 */packer_cache/*
+
+*/variables.json
