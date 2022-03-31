@@ -6,7 +6,7 @@ source "virtualbox-iso" "centos" {
     "<tab><bs>",
     "<bs><bs>",
     "<bs><bs>",
-    "text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos8.cfg<enter><wait>"
+    "text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
   ]
   boot_wait      = "10s"
   disk_size      = 20000
@@ -77,8 +77,8 @@ source "virtualbox-iso" "ubuntu" {
 
 build {
   sources = [
-    #"source.virtualbox-iso.ubuntu",
-    "source.virtualbox-iso.centos"
+    "source.virtualbox-iso.ubuntu",
+    #"source.virtualbox-iso.centos"
   ]
 
   provisioner "shell" {
