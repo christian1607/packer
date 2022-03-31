@@ -1,37 +1,43 @@
 {
-
-    "builders": [
-      {
-        "type": "azure-arm",
-        "subscription_id": "{{user `subscription_id`}}",
-        "client_id": "{{user `client_id`}}",
-        "client_secret": "{{user `client_secret`}}",
-        "image_publisher": "Canonical",
-        "image_offer": "UbuntuServer",
-        "image_sku": "18.04-LTS",
-        "location": "eastus",
-        "temp_resource_group_name":"rg-tmp-packer-personal-001",
-        "managed_image_name": "image-centos-7-8-minimal",
-        "managed_image_resource_group_name": "rg-azurecli-personal-001",
-        "os_type": "linux",
-        "vm_size": "Standard_D2ds_v4",
-        "azure_tags": {
-            "Owner": "Christian Altamirano",
-            "CostCenter": "Trial",
-            "Project": "PackerAzure"    
-        }
-        
-
+  "variables": {
+    "az_vm_sku": "18.04-LTS",
+    "az_vm_size": "Standard_D2ds_v4",
+    "az_vm_location": "eastus",
+    "az_vm_offer": "UbuntuServer",
+    "az_vm_publisher": "Canonical",
+    "az_vm_os_type": "linux",
+    "az_rg": "rg-azurecli-personal-001",
+    "az_image_name": "rimage-centos-7-8-minimal"
+  },
+  "builders": [
+    {
+      "type": "azure-arm",
+      "subscription_id": "{{user `subscription_id`}}",
+      "client_id": "{{user `client_id`}}",
+      "client_secret": "{{user `client_secret`}}",
+      "image_publisher": "{{user `az_vm_publisher`}}",
+      "image_offer": "{{user `az_vm_offer`}}",
+      "image_sku": "{{user `az_vm_sku`}}",
+      "location": "{{user `az_vm_location`}}",
+      "temp_resource_group_name":"rg-tmp-packer-personal-001",
+      "managed_image_name": "{{user `az_image_name`}}",
+      "managed_image_resource_group_name": "{{user `az_rg`}}",
+      "os_type": "{{user `az_vm_os_type`}}",
+      "vm_size": "{{user `az_vm_size`}}",
+      "azure_tags": {
+          "Owner": "Christian Altamirano",
+          "CostCenter": "Trial",
+          "Project": "PackerAzure"    
       }
-    ],
+    }
+  ],
 
-    "provisioners": [
-        {
-          "type": "shell",
-          "inline": ["echo packer rocks!!!!"]
-        }
-       
-      ]
- 
+  "provisioners": [
+      {
+        "type": "shell",
+        "inline": ["echo packer rocks!!!!"]
+      }
+      
+    ]
   }
   
